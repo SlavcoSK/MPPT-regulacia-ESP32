@@ -18,20 +18,7 @@ void resetVariables(){
 }
 void Read_Sensors(){
  
-  voltageInput  = analogRead(PIN_VIN) * VIN_MULT;
-  voltageOutput = analogRead(PIN_VOUT) * VOUT_MULT;
-  currentOutput = analogRead(PIN_IOUT) * IOUT_MULT;
-
-  // jednoduchý filter
-  voltageInput  = voltageInput * 0.9  + prevVin * 0.1;
-  voltageOutput = voltageOutput * 0.9 + prevVout * 0.1;
-  currentOutput = currentOutput * 0.9 + prevIout * 0.1;
-
-  prevVin = voltageInput;
-  prevVout = voltageOutput;
-  prevIout = currentOutput;
-}
-  /////////// TEMPERATURE SENSOR /////////////
+   /////////// TEMPERATURE SENSOR /////////////
   if(sampleStoreTS<=avgCountTS){                               //TEMPERATURE SENSOR - Lite Averaging
     TS = TS + analogRead(TempSensor);
     sampleStoreTS++;   
@@ -101,4 +88,5 @@ void Read_Sensors(){
   secondsElapsed = millis()/1000;                                      //Gets the time in seconds since the was turned on  and active
   energySavings  = electricalPrice*(Wh/1000.0000);                     //Computes the solar energy saving in terms of money (electricity flag rate)   
 }
+
 
